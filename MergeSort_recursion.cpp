@@ -53,6 +53,8 @@ void merge(int *arr, int start, int end)
     {
         arr[mainIndex++]=second[index2++];
     }
+    delete []first;
+    delete []second;
 }
 
 void MergeSort(int *arr, int start, int end)
