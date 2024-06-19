@@ -1,20 +1,20 @@
 //{ Driver Code Starts
 //Initial Template for C++
 
-
 #include <bits/stdc++.h>
 using namespace std;
-#define MAX_HEIGHT 100000
 
 // Tree Node
-struct Node {
+struct Node
+{
     int data;
     Node* left;
     Node* right;
 };
 
 // Utility function to create a new Tree Node
-Node* newNode(int val) {
+Node* newNode(int val)
+{
     Node* temp = new Node;
     temp->data = val;
     temp->left = NULL;
@@ -23,18 +23,20 @@ Node* newNode(int val) {
     return temp;
 }
 
-
 // Function to Build Tree
-Node* buildTree(string str) {
+Node* buildTree(string str)
+{
     // Corner Case
-    if (str.length() == 0 || str[0] == 'N') return NULL;
+    if (str.length() == 0 || str[0] == 'N')
+        return NULL;
 
     // Creating vector of strings from input
     // string after spliting by space
     vector<string> ip;
 
     istringstream iss(str);
-    for (string str; iss >> str;) ip.push_back(str);
+    for (string str; iss >> str; )
+        ip.push_back(str);
 
     // Create the root of the tree
     Node* root = newNode(stoi(ip[0]));
@@ -66,7 +68,8 @@ Node* buildTree(string str) {
 
         // For the right child
         i++;
-        if (i >= ip.size()) break;
+        if (i >= ip.size())
+            break;
         currVal = ip[i];
 
         // If the right child is not null
@@ -86,90 +89,74 @@ Node* buildTree(string str) {
 
 
 // } Driver Code Ends
-//User function Template for C++
-/*Structure of the node of the binary tree is as
-struct Node {
+/*
+struct Node
+{
     int data;
-    Node *left;
-    Node *right;
-
-    Node(int val) {
-        data = val;
-        left = right = NULL;
-    }
+    Node* left;
+    Node* right;
 };
 */
-
-class Solution{
+class Solution
+{
     public:
-    //Function to store the zig zag order traversal of tree in a list.
-    vector <int> zigZagTraversal(Node* root)
+    //Function to return a list of nodes visible from the top view 
+    //from left to right in Binary Tree.
+    vector<int> topView(Node *root)
     {
-    	// Code here
-    	
-    	vector<int> result;
-    	queue<Node*> q;
-    	q.push(root);
-    	
-    	bool leftToRight = true;
-    	
-    	while(!q.empty())
-    	{
-    	    int size = q.size();
-    	    vector<int> ans(size);
-    	    for(int i=0;i<size;i++)
-    	    {
-    	        Node* frontNode = q.front();
-    	        q.pop();
-    	        
-    	        
-    	        int index = leftToRight? i : size-i-1;
-    	        ans[index] = frontNode->data;
-    	        if(frontNode->left)
-    	            q.push(frontNode->left);
-    	        if(frontNode->right)
-    	            q.push(frontNode->right);
-    	    }
-    	    
-    	    leftToRight = !leftToRight;
-    	    for(auto it:ans)
-    	    {
-    	        result.push_back(it);
-    	    }
-    	 }
-    	    return result;
-    	
+        //Your code here
+        vector<int> ans;
+        if(root == NULL) return ans;
+        map<int ,int> topNode;
+        queue<pair<Node*,int>> q;
+        
+        q.push(make_pair(root,0));
+        
+        
+        while(!q.empty())
+        {
+            pair<Node* ,int> temp = q.front();
+            q.pop();
+            Node* frontNode = temp.first;
+            int hd = temp.second;
+            
+            if(topNode.find(hd) == topNode.end())
+                topNode[hd] = frontNode->data;
+                
+            if(frontNode->left) q.push(make_pair(frontNode->left,hd-1));
+            if(frontNode->right) q.push(make_pair(frontNode->right,hd+1));
+        }
+        
+        
+        
+        for(auto i : topNode)
+        {
+            ans.push_back(i.second);
+        }
+        
+        return ans;
     }
+
 };
+
+
 
 //{ Driver Code Starts.
 
-/* Driver program to test size function*/
-
-  
-
 int main() {
-
-   
-    int t;
-    scanf("%d ", &t);
-    while (t--) {
-        string s, ch;
-        getline(cin, s);
-        
-        Node* root = buildTree(s);
-
-        vector<int> ans;
+    int tc;
+    cin>>tc;
+    cin.ignore(256, '\n');
+    while (tc--) {
+        string treeString;
+        getline(cin, treeString);
         Solution ob;
-        ans = ob.zigZagTraversal(root) ;
-
-        for (int i = 0; i < ans.size(); i++)
-            cout << ans[i] << " ";
-
-        cout << endl;
-     
+        Node *root = buildTree(treeString);
+        vector<int> vec = ob.topView(root);
+        for(int x : vec)
+            cout<<x<<" ";
+        cout<<endl;
     }
     return 0;
 }
-
 // } Driver Code Ends
