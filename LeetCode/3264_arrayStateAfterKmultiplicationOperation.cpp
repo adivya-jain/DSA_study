@@ -25,3 +25,25 @@ public:
         return nums;
     }
 };
+
+//more optimized 
+
+class Solution {
+public:
+    vector<int> getFinalState(vector<int>& nums, int k, int multiplier) {
+        priority_queue<pair<int,int>,vector<pair<int,int>>,greater<pair<int,int>>> pq;
+        for(int i=0;i<nums.size();i++)
+        {
+            pq.push(make_pair(nums[i],i));
+        }
+        while(k--)
+        {
+            pair<int,int> small = pq.top();
+            pq.pop();
+            nums[small.second] = nums[small.second] * multiplier;
+            pq.push({nums[small.second],small.second});
+        }
+
+        return nums;
+    }
+};
