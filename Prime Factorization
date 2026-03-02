@@ -1,0 +1,49 @@
+# Prime Factorization Using Sieve of Eratosthenes and Recursion
+
+#include <iostream>
+#include <vector>
+#include <cmath>
+using namespace std;
+vector<int> countPrimes(int n) {
+	vector<bool> prime(n + 1, true);
+	vector<int> primes;
+	prime[0] = prime[1] = false;
+	for (int i = 2; i < n; i++) {
+		if (prime[i]) {
+			primes.push_back(i);
+			for (int j = 2 * i; j < n; j = j + i) {
+				prime[j] = false;
+			}
+		}
+	}
+	return primes;
+}
+
+vector<int> primeFac(vector<int> &primes,vector<int> &ans,int n,int i) {
+	if(n==1) return ans;
+	if(i >= primes.size())
+	{
+		ans.push_back(n);
+		return ans;
+	}
+	if(n % primes[i] == 0)
+	{
+		ans.push_back(primes[i]);
+		return primeFac(primes,ans,n/primes[i],i);
+	}
+	return primeFac(primes,ans,n,i+1);
+}
+
+
+
+int main() {
+	int n = 1500;
+	vector<int> primes = countPrimes(n);
+	vector<int> ans;
+	int i=0;
+	primeFac(primes,ans,n,i);
+	for(int i=0; i<ans.size(); i++)
+	{
+		cout<<ans[i];
+	}
+}
