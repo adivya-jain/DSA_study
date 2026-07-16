@@ -1,0 +1,82 @@
+E
+DE
+CDE
+BCDE
+ABCDE
+
+
+#include <iostream>
+using namespace std;
+int main()
+{
+    for(int i=0;i<5;i++)
+    {
+        for(int j=i;j>=0;j--)
+        {
+            cout<< static_cast<char>('E' - j);
+        }
+        cout<< "\n";
+    }
+}
+
+* * * * * * * * * * 
+* * * * _ _ * * * * 
+* * * _ _ _ _ * * * 
+* * _ _ _ _ _ _ * * 
+* _ _ _ _ _ _ _ _ * 
+* _ _ _ _ _ _ _ _ * 
+* * _ _ _ _ _ _ * * 
+* * * _ _ _ _ * * * 
+* * * * _ _ * * * * 
+* * * * * * * * * *
+
+
+/******************************************************************************
+
+Welcome to GDB Online.
+  GDB online is an online compiler and debugger tool for C, C++, Python, PHP, Ruby, 
+  C#, OCaml, VB, Perl, Swift, Prolog, Javascript, Pascal, COBOL, HTML, CSS, JS
+  Code, Compile, Run and Debug online from anywhere in world.
+
+*******************************************************************************/
+#include <iostream>
+using namespace std;
+int main()
+{
+    for(int i=0;i<5;i++)
+    {
+        int spaces = 2*i;
+        for(int j=0;j<5-i;j++)
+        { 
+            cout << "* ";
+        }
+        for(int k=0;k<spaces;k++)
+        {
+            cout<<"_ ";
+        }
+        for(int j=0;j<5-i;j++)
+        {
+            cout << "* ";
+        }
+        cout<<"\n";
+ 
+    }
+    for(int i=4;i>=0;i--)
+    {
+        int spaces = 2*i;
+        for(int j=0;j<5-i;j++)
+        { 
+            cout << "* ";
+        }
+        for(int k=0;k<spaces;k++)
+        {
+            cout<<"_ ";
+        }
+        for(int j=0;j<5-i;j++)
+        {
+            cout << "* ";
+        }
+        cout<<"\n";
+ 
+    }
+}
