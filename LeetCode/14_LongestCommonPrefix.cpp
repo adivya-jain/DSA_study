@@ -75,3 +75,23 @@ public:
         return ans;
     }
 };
+
+// class Solution {
+// public:
+//     string longestCommonPrefix(vector<string>& strs) {
+//         string temp = strs[0];
+//         for (int i = 1; i < strs.size(); i++) {
+//             string s1 = strs[i];
+//             int k = 0;
+//             while (k < temp.length() &&
+//                    k < strs[i].length() &&
+//                    temp[k] == strs[i][k]) {
+//                 k++;
+//             }
+//             temp.resize(k);
+//             if (temp.empty())
+//                 return "";
+//         }
+//         return temp;
+//     }
+// };
