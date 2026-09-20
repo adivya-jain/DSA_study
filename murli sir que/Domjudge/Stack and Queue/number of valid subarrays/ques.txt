@@ -1,0 +1,47 @@
+Number of Valid Subarrays
+=========================
+
+Given an integer array nums, return the number of valid subarrays.
+
+A subarray nums[i..j] (with i <= j) is valid if nums[i] is the minimum
+element of that subarray. In other words, the leftmost element of the
+subarray is the smallest element in it.
+
+Input:
+  Line 1: integer n â€” size of array
+  Line 2: n space-separated integers â€” the array nums
+
+Output:
+  A single integer â€” the count of valid subarrays.
+
+Constraints:
+  1 <= n <= 10^5
+  -10^5 <= nums[i] <= 10^5
+
+Example 1:
+  Input:
+    5
+    1 4 2 5 3
+  Output:
+    11
+
+Example 2:
+  Input:
+    3
+    3 2 1
+  Output:
+    3
+
+Example 3:
+  Input:
+    3
+    1 1 1
+  Output:
+    6
+
+Example 4:
+  Input:
+    1
+    5
+  Output:
+    1

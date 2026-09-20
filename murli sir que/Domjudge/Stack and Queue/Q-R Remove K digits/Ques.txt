@@ -1,0 +1,37 @@
+Remove K Digits
+===============
+
+Given a non-negative integer num represented as a string, and an integer k,
+remove k digits from num so that the resulting number is the smallest possible.
+
+Notes:
+  - The resulting number must not contain leading zeros, except the number 0 itself.
+  - If all digits are removed, return "0".
+  - The order of remaining digits must be preserved.
+
+Input:
+  Line 1: string num
+  Line 2: integer k
+
+Output:
+  A single string representing the smallest possible number.
+
+Constraints:
+  1 <= |num| <= 10^5
+  0 <= k <= |num|
+  num consists only of digits.
+
+Example 1:
+  Input:      Output:
+  1432219     1219
+  3
+
+Example 2:
+  Input:      Output:
+  10200       200
+  1
+
+Example 3:
+  Input:      Output:
+  10          0
+  2
