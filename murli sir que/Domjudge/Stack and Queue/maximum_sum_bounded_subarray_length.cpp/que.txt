@@ -1,0 +1,43 @@
+Maximum-Sum Bounded Subarray Length
+
+Problem Statement
+Given a sequence of n integers and an integer k, consider all non-empty contiguous subarrays whose length is at most k.
+
+Find the length of a subarray having the maximum possible sum. If several eligible subarrays have the same maximum sum, print the greatest length among them.
+
+Your algorithm should run in linear time.
+
+Input
+The first line contains two integers n and k.
+The second line contains n integers a[0], a[1], ..., a[n-1].
+
+Output
+Print one integer: the greatest length among all maximum-sum non-empty contiguous subarrays of length at most k.
+
+Constraints
+1 <= n < 1000000
+1 <= k <= n
+-10^15 <= a[i] <= 10^15
+
+Note
+Subarray sums may exceed the range of a 64-bit signed integer for the stated constraints. The reference C++ solution uses 128-bit arithmetic internally.
+
+Sample Input 1
+7 4
+-2 3 1 -5 4 6 -1
+
+Sample Output 1
+2
+
+Explanation
+The maximum sum is 10, obtained by the subarray [4, 6], whose length is 2.
+
+Sample Input 2
+5 3
+1 0 0 -5 1
+
+Sample Output 2
+3
+
+Explanation
+The maximum sum is 1. Several eligible subarrays have this sum, including [1] and [1, 0, 0]. The greatest such length is 3.

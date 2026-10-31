@@ -28,7 +28,7 @@ int main()
         total += st.size();
     }
 
-    cout << total << endl;
+    cout << total;
 
     return 0;
 }

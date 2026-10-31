@@ -74,3 +74,42 @@ public:
         return cnt;
     }
 };
+
+
+
+//method 2 using binary index tree
+
+class Solution {
+public:
+    int reversePairs(vector<int>& nums) {
+        int n = nums.size();
+        vector<int> cc = nums;
+        sort(cc.begin(),cc.end());
+        cc.erase(unique(cc.begin(),cc.end()), cc.end());
+        int m = cc.size();
+        vector<int> bit(m + 1, 0);
+        int ans = 0;
+        auto update = [&](int i) {
+            for (; i <= m; i += i & -i) {
+                bit[i]++;
+            }
+        };
+        auto query = [&](int i) {
+            int cnt = 0;
+            for (; i > 0; i -= i & -i) {
+                cnt += bit[i];
+            }
+            return cnt;
+        };
+
+        for (int i = 0; i < n; i++) {
+            int idx =
+                upper_bound(cc.begin(), cc.end(), 2LL * nums[i]) - cc.begin();
+            ans += i - query(idx);
+
+            int pos = lower_bound(cc.begin(),cc.end(),nums[i])-cc.begin()+1;
+            update(pos);
+        }
+        return ans;
+    }
+};
